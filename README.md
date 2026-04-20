@@ -1,0 +1,60 @@
+# Sorting Algorithm Benchmark
+
+Academic project for Data Structures II. Benchmarks five sorting algorithms in C across multiple input sizes, then generates performance charts via Python/matplotlib.
+
+## Algorithms
+
+| Algorithm      | Average Case | Worst Case |
+|----------------|-------------|------------|
+| Bubble Sort    | O(n²)       | O(n²)      |
+| Selection Sort | O(n²)       | O(n²)      |
+| Insertion Sort | O(n²)       | O(n²)      |
+| Quick Sort     | O(n log n)  | O(n²)      |
+| Heap Sort      | O(n log n)  | O(n log n) |
+
+## How It Works
+
+1. **C program** (`main.c` + `sorting.c`) generates random integer arrays at sizes `[100, 1000, 5000, 10000, 50000, 100000]`, runs each algorithm on a copy, and writes per-run metrics (swaps, comparisons, elapsed time) to binary files under `./executions/`.
+2. **Python script** (`main.py`) compiles and runs the C program, reads the binary data, and saves performance charts to `./graficos/`.
+
+## Requirements
+
+- GCC
+- Python 3
+- matplotlib (`pip install matplotlib`)
+
+## Usage
+
+```bash
+# Run benchmark + generate charts
+python main.py
+```
+
+Or run only the C benchmark:
+
+```bash
+make
+./Trabalho_Pratico_II
+```
+
+## Output
+
+Charts saved to `./graficos/`:
+
+- `relatorio_completo.png` — swaps, comparisons, and time in one figure
+- `trocas_comparacao.png` — swaps per algorithm
+- `comparacoes_comparacao.png` — comparisons per algorithm
+- `tempo_comparacao.png` — execution time per algorithm
+
+## Project Structure
+
+```
+.
+├── main.c          # Benchmark driver
+├── sorting.c       # Algorithm implementations
+├── sorting.h       # Function declarations
+├── main.py         # Data reader + chart generator
+├── makefile
+├── requirements.txt
+└── executions/     # Binary result files (generated at runtime)
+```
